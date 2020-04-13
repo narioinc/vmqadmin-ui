@@ -1,6 +1,15 @@
 var sequelize = require('../db/sequelize_init') 
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
+/**
+ * Sequelize Model for storing the user data
+ * For now this is a very simple table with 
+ * first name , last name apikey and userID as 
+ * the main input colums
+ * 
+ * please Sequelize docs for the other default colums
+ * that are also added.
+ */
 class User extends Model {}
 User.init({
   // attributes

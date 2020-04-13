@@ -1,3 +1,9 @@
+/**
+ * 
+ * The exports for the Sequelize object. 
+ * Import this into your module to get access the to 
+ * ORM
+ */
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
 const sequelize = new Sequelize({
@@ -5,9 +11,8 @@ const sequelize = new Sequelize({
   storage: './db/app.db'
 });
 
-
 sequelize
-  .sync()
+  .sync() //syncing here is just for testing connection.
   .then(() => {
     console.log('Connection has been established successfully.');
   })
@@ -15,4 +20,4 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 
-  module.exports = sequelize;
+module.exports = sequelize;
