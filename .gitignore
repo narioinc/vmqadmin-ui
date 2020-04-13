@@ -50,5 +50,5 @@ logs/app.log
 
 #sqlite db
 db/app.db
-
+db/app.db-journal
 
