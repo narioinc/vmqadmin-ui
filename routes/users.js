@@ -40,6 +40,36 @@ router.get('/:userID', function(req, res, next){
   });
 })
 
+/* DELETE users based on a specific userID */
+router.delete('/:userID', function(req, res, next){
+  getVmqAdmin().then(user => {
+    var vmqHost = config.get("vmq.hostname")
+    var vmqPort = config.get("vmq.port");
+    url = "http://" + user[0].apikey + "@" + vmqHost + ":" + vmqPort + "/api/v1"
+    User.findAll({
+      where:{
+        userID: req.params.userID
+      }
+    }).then(delUser => {
+     axios.get(url + "/api-key/delete?key=" + delUser.apikey)
+     .then(response => {
+      user[0].destroy();
+      res.status(200);
+      return res.json({});
+     })
+     .catch(err => {
+      res.status(400);
+      return res.json({"message": err});
+     })
+    });
+  })
+  .catch(err =>{
+    res.status(400);
+    return res.json({"message" : err});
+  })
+})
+
+
 /* POST add user to the database and associate a key to them */
 router.post('/add', function(req, res, next){
   var request = req.body;
@@ -47,26 +77,30 @@ router.post('/add', function(req, res, next){
     var vmqHost = config.get("vmq.hostname")
     var vmqPort = config.get("vmq.port");
     url = "http://" + user[0].apikey + "@" + vmqHost + ":" + vmqPort + "/api/v1"
-    logger.info(url);
-  axios.get(url + "/api-key/create")
-  .then(function (response) {
-    logger.info(response.data);
-    User.create({ userID: request.userID, firstName: request.firstName, lastName: request.lastName, apikey: response.data.text})
-    .then(user => {
-      res.status(200);
-      return res.json(user);
+  
+    User.create({ userID: request.userID, firstName: request.firstName, lastName: request.lastName, apikey: ""})
+    .then(newUser => {
+      axios.get(url + "/api-key/create")
+      .then(function (response) {
+        logger.info("create key response :: " + response.data);
+        newUser.apikey = response.data.text;
+        newUser.save();
+        res.status(200);
+        return res.json(newUser);
+      })
+      .catch(error => {
+        res.status(400)
+        return res.json({});
+      });
     }).catch(err => {
+      logger.info("create user error :: " + err)
       res.status(400);
-      res.json({"message" : err.errors.message});
+      res.json({"message" : err});
     });
-  })
-  .catch(function(error) {
-    res.status(400)
-    return res.json({});
-  });
   }).catch(err => {
+    logger.info("get admin user error :: " + err)
     res.status(400);
-    return res.json({"message" : err.errors.message});
+    return res.json({"message" : err});
   });
  
 });
