@@ -82,7 +82,6 @@ router.post('/add', function(req, res, next){
     .then(newUser => {
       axios.get(url + "/api-key/create")
       .then(function (response) {
-        logger.info("create key response :: " + response.data);
         newUser.apikey = response.data.text;
         newUser.save();
         res.status(200);
@@ -93,12 +92,10 @@ router.post('/add', function(req, res, next){
         return res.json({});
       });
     }).catch(err => {
-      logger.info("create user error :: " + err)
       res.status(400);
       res.json({"message" : err});
     });
   }).catch(err => {
-    logger.info("get admin user error :: " + err)
     res.status(400);
     return res.json({"message" : err});
   });
