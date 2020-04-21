@@ -17,7 +17,7 @@ var bodyParser = require('body-parser')
 
 const serverPort = config.get('server.port');
 const _port = serverPort;
-const _app_folder = 'dist/vmqadmin-ui'
+const _app_folder = 'ui/dist/vmqadmin-ui'
 
 const app = express();
 app.use(compression());

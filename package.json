@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "ng build --prod & node server.js"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
@@ -21,5 +21,8 @@
     "sequelize": "^5.21.6",
     "sqlite3": "^4.1.1",
     "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^0.901.1"
   }
 }
