@@ -7,6 +7,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser')
+var cors = require('cors')
 
 
 /**
@@ -17,7 +18,7 @@ var bodyParser = require('body-parser')
 
 const serverPort = config.get('server.port');
 const _port = serverPort;
-const _app_folder = 'ui/dist/vmqadmin-ui'
+const _app_folder = 'ui/dist/ui'
 
 const app = express();
 app.use(compression());
@@ -26,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json())
+app.use(cors())
 
 app.use('/users', usersRouter);
 
