@@ -36,12 +36,25 @@ router.get('/:userID', function(req, res, next){
       userID: req.params.userID
     }
   }).then(user => {
+   if(user.length > 0){
+    res.status(200);
+    return res.json(user);
+   }else{
+    res.status(404);
+    return res.json();
+   }
+  }).catch(err => {
+    res.status(400);
     return res.json(user);
   });
 })
 
 /* DELETE users based on a specific userID */
 router.delete('/:userID', function(req, res, next){
+  if(req.params.userID == 'admin'){
+    res.status(400);
+    return res.json({"message": "cannot delete admin account"});
+  }
   getVmqAdmin().then(user => {
     var vmqHost = config.get("vmq.hostname")
     var vmqPort = config.get("vmq.port");
@@ -73,6 +86,10 @@ router.delete('/:userID', function(req, res, next){
 /* POST add user to the database and associate a key to them */
 router.post('/add', function(req, res, next){
   var request = req.body;
+  if(request.userID == 'admin'){
+    res.status(400);
+    return res.json({"message": "cannot add admin account, you can only update"});
+  }
   getVmqAdmin().then(user => {
     var vmqHost = config.get("vmq.hostname")
     var vmqPort = config.get("vmq.port");
@@ -102,8 +119,40 @@ router.post('/add', function(req, res, next){
  
 });
 
-/* POST API to add a admin, please see this as a stub API 
-which will be removed as the code maturees */
+router.patch('/update', function(req, res, next){
+  var request = req.body;
+  User.findOne({
+    where:{
+      userID: request.userID
+    }
+  }).then(user => {
+    console.log("found..")
+    if(request.firstName) user.firstName = request.firstName;
+    if(request.lastName) user.lastName = request.lastName;
+    if(request.apikey) user.apikey = request.apikey
+    user.save();
+    res.status(200);
+    return res.json({});
+  })
+  .catch(err => {
+    res.status(400);
+    return res.json({"message" : err.errors.message});
+  })
+})
+
+/* POST API to add a admin */
+router.post('/addAdmin', function(req, res, next){
+  User.create({ userID: ADMIN_USER_ID, firstName: ADMIN_USER_ID, lastName: ADMIN_USER_ID, apikey: req.body.apikey})
+  .then(user => {
+    res.status(200);
+    return res.json(user);
+  }).catch(err => {
+    res.status(400);
+    return res.json({"message" : err.errors.message});
+  });
+})
+
+/* POST API to add a admin */
 router.post('/addAdminStub', function(req, res, next){
   User.create({ userID: ADMIN_USER_ID, firstName: ADMIN_USER_ID, lastName: ADMIN_USER_ID, apikey: "BDW3vM6sTg6cKf9hfnHOwr4UCIT1q4yA"})
   .then(user => {
