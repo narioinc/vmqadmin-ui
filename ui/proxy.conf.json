@@ -1,0 +1,12 @@
+{
+    "/health/*": {
+      "target":  {
+        "host": "localhost",
+        "protocol": "http:",
+        "port": 9999
+      },
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug" 
+    }
+}

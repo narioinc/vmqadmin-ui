@@ -1,0 +1,9 @@
+<p>Setup Admin</p>
+
+<form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
+<mat-form-field appearance="outline">
+    <mat-label>Api key</mat-label>
+    <input matInput [formControl]="apikey" required>
+    <button mat-flat-button color="primary" type="submit">ok</button>
+</mat-form-field>
+</form>
