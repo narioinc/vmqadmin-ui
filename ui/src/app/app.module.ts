@@ -8,6 +8,9 @@ import { AppMaterialModule } from './material.module'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MainModule } from './main/main.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MainModule,
+    DashboardModule,
+    UserModule,
     HttpClientModule,
     ReactiveFormsModule,
     AppMaterialModule,

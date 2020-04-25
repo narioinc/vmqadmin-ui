@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
-import { HealthmetricsComponent } from './healthmetrics/healthmetrics.component';
-import { DashboardComponent } from './dashboard.component';
+import { ListUserComponent } from './list-user/list-user.component';
 
 const routes: Routes = [
-  { path: 'health', component: HealthmetricsComponent },
-  { path: '', component: DashboardComponent }
-
+  { path: '', component: ListUserComponent},
 ]; // sets up routes constant where you define your routes
 
 // configures NgModule imports and exports
@@ -14,4 +11,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule { }
+export class UserRoutingModule { }
