@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainModule } from './main/main.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from './user/user.module';
+import { DialogsModule} from './dialogs/dialogs.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { UserModule } from './user/user.module';
     MainModule,
     DashboardModule,
     UserModule,
+    DialogsModule,
     HttpClientModule,
     ReactiveFormsModule,
     AppMaterialModule,
