@@ -24,14 +24,28 @@ export class SetupAdminComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.apikey.value);
+    this.userService.checkAdmin(this.apikey.value).subscribe(
+      response =>{
+        console.log("admin credentials are valid");
+        this.createAdmin(this.apikey.value);
+      },
+      error => {
+        console.log("admin credentials are valid");
+      }
+    )
+  }
+
+  createAdmin(apikey: string): void{
     var user = {
       userID: "admin",
-      apikey: this.apikey.value,
+      apikey: apikey,
       firstName: "admin",
       lastName: "admin"
     };
-    this.userService.createAdmin(user).subscribe(adminUser => {
-    });
+    this.userService.createAdmin(user).subscribe(
+    response => {},
+    error => {}
+    );
   }
 
 

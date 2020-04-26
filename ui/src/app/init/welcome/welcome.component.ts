@@ -28,6 +28,7 @@ export class WelcomeComponent implements OnInit {
     .subscribe(
     adminUser =>{ 
       this.adminUser = adminUser;
+      localStorage.setItem("admin", JSON.stringify(adminUser));
       this.router.navigate(['/main']);
     },
     error => {
