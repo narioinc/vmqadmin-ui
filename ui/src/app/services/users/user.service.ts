@@ -41,7 +41,7 @@ getAdmin(): Observable<User> {
   );
 }
 
-checkAdmin(apikey: string): Observable<Object> {
+checkApikey(apikey: string): Observable<Object> {
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',

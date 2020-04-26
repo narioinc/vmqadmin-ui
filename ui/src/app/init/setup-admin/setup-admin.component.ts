@@ -24,7 +24,7 @@ export class SetupAdminComponent implements OnInit {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.apikey.value);
-    this.userService.checkAdmin(this.apikey.value).subscribe(
+    this.userService.checkApikey(this.apikey.value).subscribe(
       response =>{
         console.log("admin credentials are valid");
         this.createAdmin(this.apikey.value);
