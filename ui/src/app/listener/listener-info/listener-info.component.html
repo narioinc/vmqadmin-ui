@@ -1,0 +1,47 @@
+<div class="listener-info_wrapper">
+    <h1>Listeners</h1>
+    <table mat-table [dataSource]="listeners" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="Type">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let node"> {{node.type}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Running Status">
+            <th mat-header-cell *matHeaderCellDef> Running Status </th>
+            <td mat-cell *matCellDef="let listener"> {{listener.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="IP">
+            <th mat-header-cell *matHeaderCellDef> IP </th>
+            <td mat-cell *matCellDef="let listener"> {{listener.ip}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Port">
+            <th mat-header-cell *matHeaderCellDef> Port </th>
+            <td mat-cell *matCellDef="let listener"> {{listener.port}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Mountpoint">
+            <th mat-header-cell *matHeaderCellDef> Mountpoint </th>
+            <td mat-cell *matCellDef="let listener"> {{listener.mountpoint}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Max Connections">
+            <th mat-header-cell *matHeaderCellDef> Max Connections </th>
+            <td mat-cell *matCellDef="let listener"> {{listener.max_conns}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let session">
+                <mat-icon aria-hidden="false" aria-label="start listener">cancel</mat-icon>
+                <mat-icon aria-hidden="false" aria-label="restart listener">refresh</mat-icon>
+                <mat-icon aria-hidden="false" aria-label="delete listener">delete</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

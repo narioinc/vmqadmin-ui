@@ -22,7 +22,12 @@ const routes: Routes = [
   {
     path: 'plugins',  
     loadChildren: () => import('../plugins/plugins.module').then(m => m.PluginsModule)
+  },
+  {
+    path: 'listener',  
+    loadChildren: () => import('../listener/listener.module').then(m => m.ListenerModule)
   }
+
 
 ]; // sets up routes constant where you define your routes
 

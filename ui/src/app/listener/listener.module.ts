@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClusterInfoComponent } from './cluster-info/cluster-info.component';
-import { ClusterRoutingModule } from './cluster-routing';
+import { ListenerInfoComponent } from './listener-info/listener-info.component';
+import { ListenerRoutingModule } from './listener-routing';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
-  declarations: [ClusterInfoComponent],
+  declarations: [ListenerInfoComponent],
   imports: [
     CommonModule,
-    ClusterRoutingModule,
+    ListenerRoutingModule,
     MatTableModule,
     MatIconModule
   ]
 })
-export class ClusterModule { }
+export class ListenerModule { }

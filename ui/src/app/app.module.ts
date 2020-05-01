@@ -15,6 +15,7 @@ import { DialogsModule} from './dialogs/dialogs.module';
 import { ClusterModule } from './cluster/cluster.module';
 import { SessionModule } from './session/session.module';
 import { PluginsModule } from './plugins/plugins.module';
+import { ListenerModule } from './listener/listener.module';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,14 @@ import { PluginsModule } from './plugins/plugins.module';
     ClusterModule,
     SessionModule,
     PluginsModule,
+    ListenerModule,
     UserModule,
     DialogsModule,
     HttpClientModule,
     ReactiveFormsModule,
     AppMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ListenerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClusterComponent } from './cluster.component';
+import { ListenerInfoComponent } from './listener-info.component';
 
-describe('ClusterComponent', () => {
-  let component: ClusterComponent;
-  let fixture: ComponentFixture<ClusterComponent>;
+describe('ListenerInfoComponent', () => {
+  let component: ListenerInfoComponent;
+  let fixture: ComponentFixture<ListenerInfoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ClusterComponent ]
+      declarations: [ ListenerInfoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClusterComponent);
+    fixture = TestBed.createComponent(ListenerInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

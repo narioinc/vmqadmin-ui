@@ -1,1 +1,53 @@
-<p>session-info works!</p>
+<div class="session-info_wrapper">
+    <h1>Sessions</h1>
+    <table mat-table [dataSource]="sessions" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Client ID">
+            <th mat-header-cell *matHeaderCellDef> Client ID </th>
+            <td mat-cell *matCellDef="let session"> {{session.client_id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Online Status">
+            <th mat-header-cell *matHeaderCellDef> Online Status </th>
+            <td mat-cell *matCellDef="let session"> {{session.is_online}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Mountpoint">
+            <th mat-header-cell *matHeaderCellDef> Mountpoint </th>
+            <td mat-cell *matCellDef="let session"> {{session.mountpoint}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Peer Host">
+            <th mat-header-cell *matHeaderCellDef> Peer Host </th>
+            <td mat-cell *matCellDef="let session"> {{ session.peer_host }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Peer Port">
+            <th mat-header-cell *matHeaderCellDef> Peer Port </th>
+            <td mat-cell *matCellDef="let session"> {{ session.peer_port }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="User">
+            <th mat-header-cell *matHeaderCellDef> User </th>
+            <td mat-cell *matCellDef="let session"> {{ session.user }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let session">
+                <mat-icon aria-hidden="false" aria-label="disconnect session">cancel</mat-icon>
+                <mat-icon aria-hidden="false" aria-label="reauthorize session">refresh</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

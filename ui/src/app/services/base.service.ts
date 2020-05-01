@@ -1,12 +1,19 @@
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {throwError} from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export class BaseService {
-  private vmqURL = "http://localhost:4200/api/v1";
-  private localAPIURL = "http://localhost:7777"
-  private vmqAdmin = JSON.parse(localStorage.getItem("admin"));
+  public vmqURL = "http://localhost:4200/api/v1";
+  public localAPIUrl = environment.localAPIHost + ":" + environment.localAPIPort + "/users"  // URL to web api
+  public vmqAdmin;
+  public vmqAdminApiKey: string;
 
-
+constructor(){
+  this.vmqAdmin = JSON.parse(localStorage.getItem("admin"))
+  if(this.vmqAdmin){
+    this.vmqAdminApiKey = this.vmqAdmin[0].apikey;
+  }
+}
 public handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

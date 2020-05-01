@@ -1,1 +1,25 @@
-<p>cluster-info works!</p>
+<div class="cluster-info_wrapper">
+    <h1>Cluster Nodes</h1>
+    <table mat-table [dataSource]="nodes" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="Node ID">
+            <th mat-header-cell *matHeaderCellDef> Node ID </th>
+            <td mat-cell *matCellDef="let node"> {{node.Node}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Online Status">
+            <th mat-header-cell *matHeaderCellDef> Online Status </th>
+            <td mat-cell *matCellDef="let node"> {{node.Running}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let session">
+                <mat-icon aria-hidden="false" aria-label="Leave cluster">cancel</mat-icon>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

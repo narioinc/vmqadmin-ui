@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user-model';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { Observable, of } from 'rxjs';
 import { catchError} from 'rxjs/operators';
-import { throwError } from 'rxjs';
 import { BaseService } from '../base.service';
 
 
@@ -12,8 +10,7 @@ import { BaseService } from '../base.service';
   providedIn: 'root'
 })
 export class UserService extends BaseService {
-  private localAPIUrl = environment.localAPIHost + ":" + environment.localAPIPort + "/users"  // URL to web api
-  private vmqUrl = "http://localhost:4200/api/v1";
+    
   constructor(private http: HttpClient) { 
     super();
   }
@@ -48,7 +45,7 @@ checkApikey(apikey: string): Observable<Object> {
       'Authorization': 'Basic ' + btoa(apikey + ':')
     })
   };
-  return this.http.get(this.vmqUrl + "/cluster/show").pipe(
+  return this.http.get(this.vmqURL + "/cluster/show").pipe(
     catchError(this.handleError)
   );
 }

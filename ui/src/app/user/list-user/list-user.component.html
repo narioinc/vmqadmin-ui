@@ -26,7 +26,10 @@
         <!-- Symbol Column -->
         <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
-            <td mat-cell *matCellDef="let user"></td>
+            <td mat-cell *matCellDef="let user">
+                <mat-icon aria-hidden="false" aria-label="edit user">edit</mat-icon>
+                <mat-icon aria-hidden="false" aria-label="delete user">delete</mat-icon>
+            </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
