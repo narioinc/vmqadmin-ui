@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
-import { HealthmetricsComponent } from './healthmetrics/healthmetrics.component';
+import { ClusterComponent } from './cluster.component';
+import { ClusterInfoComponent } from './cluster-info/cluster-info.component';
 
 const routes: Routes = [
-  { path: 'health', component: HealthmetricsComponent },
-  { path: '', redirectTo: 'health', pathMatch: 'full' }
-
+  { path: '', component: ClusterComponent},
+  { path: 'info',  component: ClusterInfoComponent}
 ]; // sets up routes constant where you define your routes
 
 // configures NgModule imports and exports
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule { }
+export class ClusterRoutingModule { }

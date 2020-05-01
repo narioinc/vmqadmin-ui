@@ -15,7 +15,5 @@ export class MainComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.opened = false;
-    console.log("routing now");
-    this.router.navigate(["main", "users"], {relativeTo: this.route});
   }
 }

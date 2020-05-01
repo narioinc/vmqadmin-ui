@@ -12,6 +12,9 @@ import { MainModule } from './main/main.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { UserModule } from './user/user.module';
 import { DialogsModule} from './dialogs/dialogs.module';
+import { ClusterModule } from './cluster/cluster.module';
+import { SessionModule } from './session/session.module';
+import { PluginsModule } from './plugins/plugins.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { DialogsModule} from './dialogs/dialogs.module';
     AppRoutingModule,
     MainModule,
     DashboardModule,
+    ClusterModule,
+    SessionModule,
+    PluginsModule,
     UserModule,
     DialogsModule,
     HttpClientModule,

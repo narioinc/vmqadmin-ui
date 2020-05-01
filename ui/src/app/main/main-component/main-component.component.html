@@ -9,15 +9,16 @@
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
         <mat-list>
-            <mat-list-item> Cluster </mat-list-item>
-            <mat-list-item> Users </mat-list-item>
-            <mat-list-item> Session </mat-list-item>
-            <mat-list-item> Plugins </mat-list-item>
+            <mat-list-item> <a [routerLink]="['dashboard']">Dashboard</a> </mat-list-item>
+            <mat-list-item> <a [routerLink]="['cluster/info']">Cluster</a> </mat-list-item>
+            <mat-list-item> <a [routerLink]="['users']">Users</a></mat-list-item>
+            <mat-list-item> <a [routerLink]="['session/info']">Session</a> </mat-list-item>
+            <mat-list-item> <a [routerLink]="['plugins']">Plugins</a> </mat-list-item>
             <mat-list-item> Listeners </mat-list-item>
             <mat-list-item> System Metrics </mat-list-item>
-           </mat-list>
+        </mat-list>
     </mat-sidenav>
-  
+
     <mat-sidenav-content class="example-content">
         <router-outlet></router-outlet>
     </mat-sidenav-content>

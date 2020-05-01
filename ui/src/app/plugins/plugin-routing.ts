@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
-import { HealthmetricsComponent } from './healthmetrics/healthmetrics.component';
+import { PluginManagementComponent } from './plugin-management/plugin-management.component';
 
 const routes: Routes = [
-  { path: 'health', component: HealthmetricsComponent },
-  { path: '', redirectTo: 'health', pathMatch: 'full' }
+ { path: '', redirectTo: 'info', pathMatch: 'full' },
+ { path: 'info', component: PluginManagementComponent}
 
 ]; // sets up routes constant where you define your routes
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule { }
+export class PluginRoutingModule { }
