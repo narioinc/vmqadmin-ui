@@ -18,5 +18,16 @@
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"
+    },
+
+    "/status/*": {
+        "target": {
+            "host": "localhost",
+            "protocol": "http:",
+            "port": 9999
+        },
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
     }
 }

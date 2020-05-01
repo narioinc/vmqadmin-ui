@@ -1,0 +1,9 @@
+.status_container {
+    width: 96%;
+    margin: 2%;
+}
+
+.status_iframe {
+    width: 96%;
+    height: 600px;
+}
