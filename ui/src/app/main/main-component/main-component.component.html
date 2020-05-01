@@ -8,15 +8,48 @@
 </mat-toolbar>
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-        <mat-list>
-            <mat-list-item> <a [routerLink]="['dashboard']">Dashboard</a> </mat-list-item>
-            <mat-list-item> <a [routerLink]="['cluster']">Cluster</a> </mat-list-item>
-            <mat-list-item> <a [routerLink]="['users']">Users</a></mat-list-item>
-            <mat-list-item> <a [routerLink]="['session']">Session</a> </mat-list-item>
-            <mat-list-item> <a [routerLink]="['plugins']">Plugins</a> </mat-list-item>
-            <mat-list-item> <a [routerLink]="['listener']">Listeners</a> </mat-list-item>
-            <mat-list-item> System Metrics </mat-list-item>
-        </mat-list>
+        <mat-nav-list>
+            <mat-list-item>
+                <mat-icon aria-hidden="false" aria-label="Dashboard">dashboard</mat-icon>
+                <p class="menu_spacer"></p>
+                <a [routerLink]="['dashboard']"> Dashboard</a>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon aria-hidden="false" aria-label="Cluster">layers</mat-icon>
+                <p class="menu_spacer"></p>
+                <a [routerLink]="['cluster']"> Cluster</a>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon aria-hidden="false" aria-label="Users">supervisor_account</mat-icon>
+                <p class="menu_spacer"></p>
+                <a [routerLink]="['users']"> Users</a>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon aria-hidden="false" aria-label="Sessions">cast_connected</mat-icon>
+                <p class="menu_spacer"></p>
+                <a [routerLink]="['session']"> Session</a>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon aria-hidden="false" aria-label="Plugins">power</mat-icon>
+                <p class="menu_spacer"></p>
+                <a [routerLink]="['plugins']"> Plugins</a>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon aria-hidden="false" aria-label="Listeners">import_export</mat-icon>
+                <p class="menu_spacer"></p>
+                <a [routerLink]="['listener']"> Listeners</a>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon aria-hidden="false" aria-label="Metrics">trending_up</mat-icon>
+                <p class="menu_spacer"></p>
+                <a [routerLink]="['']"> System Metrics </a>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon aria-hidden="false" aria-label="Configuration">settings</mat-icon>
+                <p class="menu_spacer"></p>
+                <a [routerLink]="['']"> Configuration </a>
+            </mat-list-item>
+        </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content class="example-content">
