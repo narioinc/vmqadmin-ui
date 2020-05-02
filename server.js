@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser')
 var cors = require('cors')
-
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 /**
  * Internal REST APIs
@@ -30,6 +30,9 @@ app.use(cookieParser());
 app.use(bodyParser.json())
 app.use(cors())
 app.disable('x-powered-by');
+app.use('/api', createProxyMiddleware({ target: 'http://127.0.0.1:9999', changeOrigin: true }));
+app.use('/health', createProxyMiddleware({ target: 'http://127.0.0.1:9999', changeOrigin: true }));
+app.use('/status', createProxyMiddleware({ target: 'http://127.0.0.1:9999', changeOrigin: true }));
 
 app.use('/users', usersRouter);
 app.use('/metrics', metricsRouter);

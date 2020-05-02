@@ -3,5 +3,5 @@ export const environment = {
   localAPIHost: "http://localhost",
   localAPIPort: 7777,
   vmqAPIHost: "http://localhost",
-  vmqAPIPort: 9999
+  vmqAPIPort: 7777
 };
