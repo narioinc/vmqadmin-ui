@@ -14,7 +14,7 @@ export class ListUserComponent implements OnInit {
 
   users: MatTableDataSource<User>;
   displayedColumns: string[] = ['User ID', 'First Name', 'Last Name', 'Action'];
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(
@@ -22,12 +22,14 @@ export class ListUserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.users = new MatTableDataSource([])
+    this.users.sort = this.sort;
+    this.users.paginator = this.paginator;
     this.getUser();
   }
 
   ngAfterViewInit() {
-    //this.users.paginator = this.paginator;
-    //this.users.sort = this.sort;
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
   }
 
   applyFilter(filterValue: string) {
@@ -36,14 +38,12 @@ export class ListUserComponent implements OnInit {
     this.users.filter = filterValue;
   }
 
-
   getUser(): void{
     this.userService.getUsers().subscribe(
       response => {
         console.log(response);
-        this.users = new MatTableDataSource(response)
-        this.users.sort = this.sort;
-        this.users.paginator = this.paginator;
+        this.users.data = response;
+        this.users.sort = this.sort;       
       },
       error => {}
     )
@@ -54,6 +54,7 @@ export class ListUserComponent implements OnInit {
     this.userService.deleteUser(user.userID).subscribe(
       response => {
         console.log("deleted user" + user.userID);
+        this.ngOnInit();
       },
       error => {}
     )

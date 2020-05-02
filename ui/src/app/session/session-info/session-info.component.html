@@ -2,28 +2,24 @@
     <h1>Sessions</h1>
     <table mat-table [dataSource]="sessions" class="mat-elevation-z8">
 
-        <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- Position Column -->
         <ng-container matColumnDef="Client ID">
             <th mat-header-cell *matHeaderCellDef> Client ID </th>
             <td mat-cell *matCellDef="let session"> {{session.client_id}} </td>
         </ng-container>
 
-        <!-- Name Column -->
+
         <ng-container matColumnDef="Online Status">
             <th mat-header-cell *matHeaderCellDef> Online Status </th>
             <td mat-cell *matCellDef="let session"> {{session.is_online}} </td>
         </ng-container>
 
-        <!-- Weight Column -->
+
         <ng-container matColumnDef="Mountpoint">
             <th mat-header-cell *matHeaderCellDef> Mountpoint </th>
             <td mat-cell *matCellDef="let session"> {{session.mountpoint}} </td>
         </ng-container>
 
-        <!-- Symbol Column -->
+
         <ng-container matColumnDef="Peer Host">
             <th mat-header-cell *matHeaderCellDef> Peer Host </th>
             <td mat-cell *matCellDef="let session"> {{ session.peer_host }}</td>

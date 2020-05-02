@@ -5,28 +5,25 @@
     </mat-form-field>
     <table mat-table [dataSource]="users" class="mat-elevation-z8" matSort>
 
-        <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- Position Column -->
         <ng-container matColumnDef="User ID">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> User ID </th>
             <td mat-cell *matCellDef="let user"> {{user.userID}} </td>
         </ng-container>
 
-        <!-- Name Column -->
+
         <ng-container matColumnDef="First Name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
             <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
         </ng-container>
 
-        <!-- Weight Column -->
+
         <ng-container matColumnDef="Last Name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
             <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
         </ng-container>
 
-        <!-- Symbol Column -->
+
         <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
             <td mat-cell *matCellDef="let user">
