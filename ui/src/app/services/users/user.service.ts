@@ -27,13 +27,19 @@ createAdmin(adminUser: User): Observable<User[]> {
 }
 
 getUsers(): Observable<User[]> {
-  return this.http.get<User[]>(this.localAPIUrl).pipe(
+  return this.http.get<User[]>(this.localAPIUrl + "/users").pipe(
     catchError(this.handleError)
   );
 }
 
 getAdmin(): Observable<User> {
   return this.http.get<User>(this.localAPIUrl + "/admin").pipe(
+    catchError(this.handleError)
+  );
+}
+
+deleteUser(userID: string): Observable<object> {
+  return this.http.delete(this.localAPIUrl + "/users/" + userID).pipe(
     catchError(this.handleError)
   );
 }

@@ -26,8 +26,8 @@ export class ListUserComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.users.paginator = this.paginator;
-    this.users.sort = this.sort;
+    //this.users.paginator = this.paginator;
+    //this.users.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
@@ -42,11 +42,25 @@ export class ListUserComponent implements OnInit {
       response => {
         console.log(response);
         this.users = new MatTableDataSource(response)
-        //this.users.sort = this.sort;
-        //this.users.paginator = this.paginator;
+        this.users.sort = this.sort;
+        this.users.paginator = this.paginator;
       },
       error => {}
     )
+  }
+
+  deleteUser(user: User): void{
+    console.log(user);
+    this.userService.deleteUser(user.userID).subscribe(
+      response => {
+        console.log("deleted user" + user.userID);
+      },
+      error => {}
+    )
+  }
+
+  editUser(user: User): void{
+
   }
 
 }
