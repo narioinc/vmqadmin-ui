@@ -33,7 +33,7 @@ getUsers(): Observable<User[]> {
 }
 
 getAdmin(): Observable<User> {
-  return this.http.get<User>(this.localAPIUrl + "/admin").pipe(
+  return this.http.get<User>(this.localAPIUrl + "/users/admin").pipe(
     catchError(this.handleError)
   );
 }
@@ -51,7 +51,7 @@ checkApikey(apikey: string): Observable<Object> {
       'Authorization': 'Basic ' + btoa(apikey + ':')
     })
   };
-  return this.http.get(this.vmqURL + "/cluster/show").pipe(
+  return this.http.get(this.vmqURL + "/api/v1/cluster/show").pipe(
     catchError(this.handleError)
   );
 }

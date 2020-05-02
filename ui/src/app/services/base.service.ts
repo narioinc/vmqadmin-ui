@@ -3,7 +3,7 @@ import {throwError} from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export class BaseService {
-  public vmqURL = "http://localhost:4200/api/v1";
+  public vmqURL = environment.vmqAPIHost + ":" + environment.vmqAPIPort
   public localAPIUrl = environment.localAPIHost + ":" + environment.localAPIPort  // URL to web api
   public vmqAdmin;
   public vmqAdminApiKey: string;

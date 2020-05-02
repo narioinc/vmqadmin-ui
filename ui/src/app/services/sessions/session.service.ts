@@ -21,7 +21,7 @@ export class SessionService extends BaseService{
         'Authorization': 'Basic ' + btoa(this.vmqAdminApiKey + ':')
       })
     };
-    return this.http.get(this.vmqURL + "/session/show",  httpOptions).pipe(
+    return this.http.get(this.vmqURL + "/api/v1/session/show",  httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -33,7 +33,7 @@ export class SessionService extends BaseService{
         'Authorization': 'Basic ' + btoa(this.vmqAdminApiKey + ':')
       })
     };
-    return this.http.get(this.vmqURL + "/session/disconnect/?client-id=" + clientID, httpOptions).pipe(
+    return this.http.get(this.vmqURL + "/api/v1/session/disconnect/?client-id=" + clientID, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -45,7 +45,7 @@ export class SessionService extends BaseService{
         'Authorization': 'Basic ' + btoa(this.vmqAdminApiKey + ':')
       })
     };
-    return this.http.get(this.vmqURL + "/session/reauthorize/?username="+username + "&client-id=" + clientID,  httpOptions).pipe(
+    return this.http.get(this.vmqURL + "/api/v1/session/reauthorize/?username="+username + "&client-id=" + clientID,  httpOptions).pipe(
       catchError(this.handleError)
     );
   }

@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  localAPIHost: "http://localhost",
+  localAPIPort: 7777,
+  vmqAPIHost: "http://localhost",
+  vmqAPIPort: 9999
 };

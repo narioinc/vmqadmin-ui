@@ -20,7 +20,7 @@ export class ClusterService extends BaseService{
         'Authorization': 'Basic ' + btoa(this.vmqAdminApiKey + ':')
       })
     };
-    return this.http.get(this.vmqURL + "/cluster/show",  httpOptions).pipe(
+    return this.http.get(this.vmqURL + "/api/v1/cluster/show",  httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -32,7 +32,7 @@ export class ClusterService extends BaseService{
         'Authorization': 'Basic ' + btoa(this.vmqAdminApiKey + ':')
       })
     };
-    return this.http.get(this.vmqURL + "/cluster/leave?node=" + nodeIP,  httpOptions).pipe(
+    return this.http.get(this.vmqURL + "/api/v1/cluster/leave?node=" + nodeIP,  httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -44,7 +44,7 @@ export class ClusterService extends BaseService{
         'Authorization': 'Basic ' + btoa(this.vmqAdminApiKey + ':')
       })
     };
-    return this.http.get(this.vmqURL + "/cluster/join?discovery-node=" + discoverNodeIP,  httpOptions).pipe(
+    return this.http.get(this.vmqURL + "/api/v1/cluster/join?discovery-node=" + discoverNodeIP,  httpOptions).pipe(
       catchError(this.handleError)
     );
   }

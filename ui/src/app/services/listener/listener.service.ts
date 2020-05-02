@@ -21,7 +21,7 @@ export class ListenerService extends BaseService {
         'Authorization': 'Basic ' + btoa(this.vmqAdminApiKey + ':')
       })
     };
-    return this.http.get(this.vmqURL + "/listener/show",  httpOptions).pipe(
+    return this.http.get(this.vmqURL + "/api/v1/listener/show",  httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -33,7 +33,7 @@ export class ListenerService extends BaseService {
         'Authorization': 'Basic ' + btoa(this.vmqAdminApiKey + ':')
       })
     };
-    return this.http.get(this.vmqURL + "/listener/stop?address=" + IPAddress + "&port=" + port,  httpOptions).pipe(
+    return this.http.get(this.vmqURL + "/api/v1/listener/stop?address=" + IPAddress + "&port=" + port,  httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -45,7 +45,7 @@ export class ListenerService extends BaseService {
         'Authorization': 'Basic ' + btoa(this.vmqAdminApiKey + ':')
       })
     };
-    return this.http.get(this.vmqURL + "/listener/restart?address=" + IPAddress + "&port=" + port,  httpOptions).pipe(
+    return this.http.get(this.vmqURL + "/api/v1/listener/restart?address=" + IPAddress + "&port=" + port,  httpOptions).pipe(
       catchError(this.handleError)
     );
   }
@@ -57,7 +57,7 @@ export class ListenerService extends BaseService {
         'Authorization': 'Basic ' + btoa(this.vmqAdminApiKey + ':')
       })
     };
-    return this.http.get(this.vmqURL + "/listener/delete?address=" + IPAddress + "&port=" + port,  httpOptions).pipe(
+    return this.http.get(this.vmqURL + "/api/v1/listener/delete?address=" + IPAddress + "&port=" + port,  httpOptions).pipe(
       catchError(this.handleError)
     );
   }
