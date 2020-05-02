@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { User } from '../../models/user-model'
-import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
-import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/users/user.service';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-list-user',
@@ -11,8 +12,11 @@ import { UserService } from 'src/app/services/users/user.service';
 })
 export class ListUserComponent implements OnInit {
 
-  users: User[];
+  users: MatTableDataSource<User>;
   displayedColumns: string[] = ['User ID', 'First Name', 'Last Name', 'Action'];
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   constructor(
     private userService: UserService
   ) { }
@@ -21,9 +25,26 @@ export class ListUserComponent implements OnInit {
     this.getUser();
   }
 
+  ngAfterViewInit() {
+    this.users.paginator = this.paginator;
+    this.users.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.users.filter = filterValue;
+  }
+
+
   getUser(): void{
     this.userService.getUsers().subscribe(
-      response => {this.users = response},
+      response => {
+        console.log(response);
+        this.users = new MatTableDataSource(response)
+        //this.users.sort = this.sort;
+        //this.users.paginator = this.paginator;
+      },
       error => {}
     )
   }
