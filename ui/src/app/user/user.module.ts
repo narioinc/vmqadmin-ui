@@ -8,9 +8,12 @@ import {MatSortModule} from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatInputModule} from '@angular/material/input';
+import { UserEditDialogComponent } from './user-edit-dialog/user-edit-dialog.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog'; 
 
 @NgModule({
-  declarations: [ListUserComponent],
+  declarations: [ListUserComponent, UserEditDialogComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -19,7 +22,13 @@ import {MatInputModule} from '@angular/material/input';
     MatSortModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDialogModule
+  ],
+  entryComponents:[
+    UserEditDialogComponent
   ]
 })
 export class UserModule { }

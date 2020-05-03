@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Edit User</h1>
+<div class="edit-dialog_wrapper" mat-dialog-content>
+    <form [formGroup]="userEditForm">
+        <mat-form-field appearance="fill" class="invisible">
+            <mat-label>userID</mat-label>
+            <input matInput formControlName="userID">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" cdkFocusInitial>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="cancelEdit()">Cancel</button>
+    <button mat-button [mat-dialog-close]="userEditForm.value" [disabled]="!userEditForm.valid">Ok</button>
+</div>

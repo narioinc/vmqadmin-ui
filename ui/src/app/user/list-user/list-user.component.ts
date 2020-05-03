@@ -4,6 +4,8 @@ import { UserService } from 'src/app/services/users/user.service';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { UserEditDialogComponent } from '../user-edit-dialog/user-edit-dialog.component';
 
 @Component({
   selector: 'app-list-user',
@@ -18,7 +20,8 @@ export class ListUserComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +44,6 @@ export class ListUserComponent implements OnInit {
   getUser(): void{
     this.userService.getUsers().subscribe(
       response => {
-        console.log(response);
         this.users.data = response;
         this.users.sort = this.sort;       
       },
@@ -50,7 +52,6 @@ export class ListUserComponent implements OnInit {
   }
 
   deleteUser(user: User): void{
-    console.log(user);
     this.userService.deleteUser(user.userID).subscribe(
       response => {
         console.log("deleted user" + user.userID);
@@ -61,7 +62,21 @@ export class ListUserComponent implements OnInit {
   }
 
   editUser(user: User): void{
+    const dialogRef = this.dialog.open(UserEditDialogComponent, {
+      width: '250px',
+      data: {firstName: user.firstName, lastName: user.lastName, userID: user.userID}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      //make service call here
+      this.userService.updateUser(result).subscribe(
+        response => { 
+          this.ngOnInit();
+        },
+        error => {}
+    );
+   });
   }
 
 }

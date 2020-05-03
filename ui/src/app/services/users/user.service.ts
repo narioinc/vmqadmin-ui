@@ -44,6 +44,12 @@ deleteUser(userID: string): Observable<object> {
   );
 }
 
+updateUser(user: User): Observable<object> {
+  return this.http.patch(this.localAPIUrl+ "/users/update", user).pipe(
+    catchError(this.handleError)
+  )
+}
+
 checkApikey(apikey: string): Observable<Object> {
   const httpOptions = {
     headers: new HttpHeaders({
