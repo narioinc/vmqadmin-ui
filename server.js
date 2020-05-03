@@ -15,6 +15,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
  * **/
 var usersRouter = require('./routes/users');
 var metricsRouter = require('./routes/metrics')
+var liveConfigRouter = require('./routes/liveConfig');
 
 
 const serverPort = config.get('server.port');
@@ -36,6 +37,7 @@ app.use('/status', createProxyMiddleware({ target: 'http://127.0.0.1:9999', chan
 
 app.use('/users', usersRouter);
 app.use('/metrics', metricsRouter);
+app.use('/liveConfig', liveConfigRouter);
 
 // ---- SERVE STATIC FILES ---- //
 app.get('*.*', express.static(_app_folder, { maxAge: '1y' }));
