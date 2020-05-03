@@ -28,3 +28,8 @@ form {
     width: 80%;
     display: inline-block;
 }
+
+.live-config_warning {
+    color: red;
+    font-size: 10px;
+}
