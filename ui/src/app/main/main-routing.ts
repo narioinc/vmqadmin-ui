@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'metrics',  
     loadChildren: () => import('../metrics/metrics.module').then(m => m.MetricsModule)
+  },
+  {
+    path: 'liveConfig',  
+    loadChildren: () => import('../live-config/live-config.module').then(m => m.LiveConfigModule)
   }
 
 

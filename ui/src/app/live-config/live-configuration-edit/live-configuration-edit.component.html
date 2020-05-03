@@ -1,0 +1,43 @@
+<div class="live-config_wrapper">
+    <h1>Edit Configuration</h1>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="liveConfigs" class="mat-elevation-z8" matSort>
+
+        <ng-container matColumnDef="Configuration">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Configuration </th>
+            <td mat-cell *matCellDef="let liveConfig"> {{liveConfig.config_name}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> value </th>
+            <td mat-cell *matCellDef="let liveConfig"> {{liveConfig.currentVal[0].value}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+            <td mat-cell *matCellDef="let liveConfig">
+                <form class="config_edit_form">
+                    <input ng-model="config_input" class="config_input" matInput (keyup)="applyFilter($event.target.value)" placeholder=" {{liveConfig.currentVal[0].value}} " *ngIf="liveConfig.config_vals.length <= 0">
+                    <mat-select class="config_select" value="{{liveConfig.currentVal[0].value}}" matInput (keyup)="applyFilter($event.target.value)" *ngIf="liveConfig.config_vals.length > 0">
+                        <mat-option *ngFor="let val of liveConfig.config_vals" [value]="val">
+                            {{val}}
+                        </mat-option>
+                    </mat-select>
+                </form>
+                <p class="action_spacer"></p>
+                <mat-icon aria-hidden="false" aria-label="set config">check_circle</mat-icon>
+                <p class="action_spacer"></p>
+                <mat-icon aria-hidden="false" aria-label="reset config">refresh</mat-icon>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+    </table>
+</div>
