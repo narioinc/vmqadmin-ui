@@ -15,4 +15,16 @@ export class MetricsService extends BaseService{
     super();
   }
 
+  getMetrics(): Observable<object>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa(this.vmqAdminApiKey + ':')
+      })
+    };
+    return this.http.get(this.vmqURL + "/metrics", httpOptions).pipe(
+      catchError(this.handleError)
+    )
+  }
+
 }

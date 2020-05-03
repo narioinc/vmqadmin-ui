@@ -20,16 +20,16 @@ router.get('/', function(req, res, next) {
         })
         .then(function(response) {
             var metrics = response.data.text.split("\n");
-            var metricsResponse = {};
+            var metricsResponse = { metrics: [] };
             metrics.forEach(metric => {
                 attr = metric.split(" = ");
                 console.log(attr);
-                if (attr.length >= 2) metricsResponse[attr[0].trim()] = attr[1].trim();
+                if (attr.length >= 2) metricsResponse.metrics.push({ name: attr[0].trim(), value: attr[1].trim() });
             })
             res.json(metricsResponse);
         })
         .catch(error => {
-            console.log(error.response.status);
+            console.log(error);
             res.status(400)
             return res.json({});
         });

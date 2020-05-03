@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'listener',  
     loadChildren: () => import('../listener/listener.module').then(m => m.ListenerModule)
+  },
+  {
+    path: 'metrics',  
+    loadChildren: () => import('../metrics/metrics.module').then(m => m.MetricsModule)
   }
 
 

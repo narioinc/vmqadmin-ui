@@ -1,0 +1,85 @@
+<div class="list-metrics_wrapper">
+    <h1>Server Metrics</h1>
+    <div class="top_3_metrics_wrapper">
+        <mat-grid-list cols="3" rowHeight="3:1">
+            <mat-grid-tile *ngFor="let metric of cardMetrics; let indexOfElement=index;">
+                <mat-card class="metric_top_card">
+                    <mat-card-header>
+                        <mat-card-title>{{metric.name}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="metric_card_content">
+                        <h1 class="metric_value">{{metric.value}}</h1>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <mat-form-field>
+                            <mat-label>Select Metric</mat-label>
+                            <mat-select [(ngModel)]="cardMetrics[indexOfElement]">
+                                <mat-option *ngFor="let metric of metrics.data" [value]="metric">
+                                    {{metric.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+            <!--<mat-grid-tile>
+                <mat-card class="metric_top_card">
+                    <mat-card-header>
+                        <mat-card-title>Metric 2</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="metric_card_content">
+                        <h1 class="metric_value">456</h1>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <mat-form-field>
+                            <mat-label>Select Metric</mat-label>
+                            <mat-select>
+                                <mat-option *ngFor="let metric of metrics.data" [value]="metric.name">
+                                    {{metric.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-card class="metric_top_card">
+                    <mat-card-header>
+                        <mat-card-title>Metric 3</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="metric_card_content">
+                        <h1 class="metric_value">789</h1>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <mat-form-field>
+                            <mat-label>Select Metric</mat-label>
+                            <mat-select>
+                                <mat-option *ngFor="let metric of metrics.data" [value]="metric.name">
+                                    {{metric.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>-->
+        </mat-grid-list>
+    </div>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <table mat-table [dataSource]="metrics" class="mat-elevation-z8">
+        <ng-container matColumnDef="Server Metric">
+            <th mat-header-cell *matHeaderCellDef> Server Metric </th>
+            <td mat-cell *matCellDef="let metric"> {{metric.name}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Value">
+            <th mat-header-cell *matHeaderCellDef> Value </th>
+            <td mat-cell *matCellDef="let metric"> {{metric.value}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator pageSize="10" showFirstLastButtons class="list-metrics_paginator"></mat-paginator>
+</div>

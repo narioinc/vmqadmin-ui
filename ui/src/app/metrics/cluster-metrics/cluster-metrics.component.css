@@ -1,0 +1,40 @@
+table {
+    width: 96%;
+}
+
+.list-metrics_wrapper {
+    width: 100%;
+    margin: 2%;
+}
+
+.list-metrics_paginator {
+    width: 96%;
+}
+
+.top_3_metrics_wrapper {
+    width: 96%;
+}
+
+.metric_top_card {
+    width: 90%;
+    height: 80%;
+}
+
+.metric_value {
+    position: relative;
+    top: 20%;
+    font-size: 50px;
+}
+
+.metric_card_content {
+    width: 100%;
+    height: 40%;
+    text-align: center;
+}
+
+.mat-card-title {
+    width: 300px;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
