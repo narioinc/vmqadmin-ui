@@ -6,14 +6,14 @@ var liveConfig = {
         },
         {
             config_name: "topic_alias_max_broker",
-            config_vals: ["on", "off"],
-            default: 'on',
+            config_vals: [],
+            default: '0',
             hidden: true
         },
         {
             config_name: "receive_max_broker",
-            config_vals: ["on", "off"],
-            default: 'on',
+            config_vals: [],
+            default: '65535',
             hidden: true
         },
         {

@@ -18,10 +18,50 @@ router.get('/', function(req, res, next) {
     var authHeader = req.headers["authorization"];
     var vmqURL = "http://127.0.0.1:7777/api/v1"
     fetchCurrentConfig(authHeader, vmqURL, (liveConfig) => {
-        console.log(liveConfig);
+        // console.log(liveConfig);
+        return res.json(liveConfig);
+
     });
+
+});
+
+router.patch('/set', function(req, res, next) {
+    var authHeader = req.headers["authorization"];
+    var vmqURL = "http://127.0.0.1:7777/api/v1"
+    var conf = req.body;
+
+    const http = rateLimit(axios.create(), { maxRequests: 2, perMilliseconds: 10 })
+
+    http.get(vmqURL + '/set?' + conf.config_name + "=" + conf.value + "&--all", {
+        headers: { "Authorization": authHeader }
+    }).then(
+        response => {
+            console.log(response.data);
+        }
+    )
     res.json({});
 });
+
+router.patch('/setBulk', function(req, res, next) {
+    var authHeader = req.headers["authorization"];
+    var vmqURL = "http://127.0.0.1:7777/api/v1"
+    configs = req.body.configs;
+    configReqLength = configs.length;
+
+    const http = rateLimit(axios.create(), { maxRequests: 2, perMilliseconds: 10 })
+
+    configs.forEach(config => {
+        http.get(vmqURL + '/set?' + config.config_name + "=" + config.value + "&--all", {
+            headers: { "Authorization": authHeader }
+        }).then(
+            response => {
+                console.log(response.data);
+            }
+        )
+    })
+    res.json({});
+});
+
 
 function fetchCurrentConfig(auth, url, callback) {
     const http = rateLimit(axios.create(), { maxRequests: 2, perMilliseconds: 10 })
@@ -35,7 +75,12 @@ function fetchCurrentConfig(auth, url, callback) {
             .then(response => {
                 newConfig = JSON.parse(JSON.stringify(config));
                 if (response.data) {
-                    newConfig['currentVal'] = response.data["table"][0][config.config_name]
+                    nodeConfigs = response.data["table"];
+                    newConfig['currentVal'] = []
+                    nodeConfigs.forEach(nodeConfig => {
+                            newConfig['currentVal'].push({ node: nodeConfig.node, value: nodeConfig[config.config_name] })
+                        })
+                        //newConfig['currentVal'] = response.data["table"][0][config.config_name]
                     liveConfigCurrent.configs.push(newConfig);
                 }
                 if (liveConfigCurrent.configs.length >= configLength) {
