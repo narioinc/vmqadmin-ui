@@ -32,4 +32,5 @@ form {
 .live-config_warning {
     color: red;
     font-size: 10px;
+    white-space: pre-line;
 }

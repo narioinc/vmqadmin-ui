@@ -16,7 +16,8 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 var usersRouter = require('./routes/users');
 var metricsRouter = require('./routes/metrics')
 var liveConfigRouter = require('./routes/liveConfig');
-
+var mqttClientRouter = require('./routes/mqttClients');
+var webhooksRouter = require('./routes/webhooks');
 
 const serverPort = config.get('server.port');
 const _port = serverPort;
@@ -38,6 +39,8 @@ app.use('/status', createProxyMiddleware({ target: 'http://127.0.0.1:9999', chan
 app.use('/users', usersRouter);
 app.use('/metrics', metricsRouter);
 app.use('/liveConfig', liveConfigRouter);
+app.use('/mqttClient', mqttClientRouter);
+app.use('/webhooks', webhooksRouter);
 
 // ---- SERVE STATIC FILES ---- //
 app.get('*.*', express.static(_app_folder, { maxAge: '1y' }));

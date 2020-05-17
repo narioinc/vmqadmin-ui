@@ -45,9 +45,11 @@ export class LiveConfigurationEditComponent implements OnInit {
       response => {
         console.log(response);
         this.showConfigChangeDialog(StatusDialogType.MESSAGE);
+        this.ngOnInit();
       },
       error => {
         this.showConfigChangeDialog(StatusDialogType.ERROR);
+        this.ngOnInit();
       }
     )
   }

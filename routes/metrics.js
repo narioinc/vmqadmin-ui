@@ -3,7 +3,6 @@ var sqlite3 = require('sqlite3').verbose()
 var router = express.Router();
 var appRoot = require('app-root-path');
 var logger = require('../config/logs');
-var User = require('./user_model');
 const config = require('config');
 const axios = require('axios');
 
