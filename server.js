@@ -32,9 +32,9 @@ app.use(cookieParser());
 app.use(bodyParser.json())
 app.use(cors())
 app.disable('x-powered-by');
-app.use('/api', createProxyMiddleware({ target: 'http://127.0.0.1:9999', changeOrigin: true }));
-app.use('/health', createProxyMiddleware({ target: 'http://127.0.0.1:9999', changeOrigin: true }));
-app.use('/status', createProxyMiddleware({ target: 'http://127.0.0.1:9999', changeOrigin: true }));
+app.use('/api', createProxyMiddleware({ target: 'http://' + config.vmq.hostname + ':' + config.vmq.port, changeOrigin: true }));
+app.use('/health', createProxyMiddleware({ target: 'http://' + config.vmq.hostname + ':' + config.vmq.port, changeOrigin: true }));
+app.use('/status', createProxyMiddleware({ target: 'http://' + config.vmq.hostname + ':' + config.vmq.port, changeOrigin: true }));
 
 app.use('/users', usersRouter);
 app.use('/metrics', metricsRouter);
