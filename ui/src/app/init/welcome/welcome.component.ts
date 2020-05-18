@@ -33,7 +33,7 @@ export class WelcomeComponent implements OnInit {
     },
     error => {
       console.log("Admin user not found")
-      this.router.navigate(['setup-admin'], { relativeTo: this.route});
+      this.router.navigate(['init', 'setup-admin'], { relativeTo: this.route});
     }
     );
   }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UserService } from 'src/app/services/users/user.service';
-import { User } from '../../models/user-model';
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-setup-admin',
@@ -13,8 +12,8 @@ export class SetupAdminComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService : UserService
-    
+    private userService : UserService,
+    private router: Router    
   ) { }
   adminForm = this.fb.group({});
   apikey = new FormControl('');
@@ -23,14 +22,13 @@ export class SetupAdminComponent implements OnInit {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.warn(this.apikey.value);
     this.userService.checkApikey(this.apikey.value).subscribe(
       response =>{
         console.log("admin credentials are valid");
         this.createAdmin(this.apikey.value);
       },
       error => {
-        console.log("admin credentials are valid");
+        console.log("admin credentials are invalid");
       }
     )
   }
@@ -43,8 +41,10 @@ export class SetupAdminComponent implements OnInit {
       lastName: "admin"
     };
     this.userService.createAdmin(user).subscribe(
-    response => {},
-    error => {}
+    response => { 
+      this.router.navigate(['/main']);
+    },
+    error => {console.log(error)}
     );
   }
 

@@ -21,7 +21,7 @@ createAdmin(adminUser: User): Observable<User[]> {
       'Content-Type':  'application/json'
     })
   };
-  return this.http.post<User[]>(this.localAPIUrl + "/addAdmin", adminUser, httpOptions).pipe(
+  return this.http.post<User[]>(this.localAPIUrl + "/users/addAdmin", adminUser, httpOptions).pipe(
     catchError(this.handleError)
   );
 }
@@ -51,13 +51,14 @@ updateUser(user: User): Observable<object> {
 }
 
 checkApikey(apikey: string): Observable<Object> {
+  console.log(this.vmqURL + "/api/v1/cluster/show");
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
       'Authorization': 'Basic ' + btoa(apikey + ':')
     })
   };
-  return this.http.get(this.vmqURL + "/api/v1/cluster/show").pipe(
+  return this.http.get(this.vmqURL + "/api/v1/cluster/show", httpOptions).pipe(
     catchError(this.handleError)
   );
 }

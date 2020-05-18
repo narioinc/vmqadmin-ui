@@ -1,0 +1,12 @@
+.setup-admin_wrapper {
+    position: relative;
+    text-align: center;
+    top: 40%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.hint {
+    color: blue;
+    font-size: 10px;
+}

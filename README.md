@@ -23,6 +23,10 @@ The project extends the vmq-admin command line utility via a AngularJS-based UI.
 
 ## Quick start guide
 
+Before running the app for the first time, please create a admin api-key using the vmq-admin 
+command line tool and take a not of the API-Key and have it handy
+https://docs.vernemq.com/administration/http-administration
+
 # Build angular app
 * Please ensure that you have angular 8 or above installed and ready on the system
 * Also ensure that vernemq is running on port 9999 (can be changed to your installation in  config/default.json)
