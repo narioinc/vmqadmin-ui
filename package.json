@@ -28,6 +28,6 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.901.1"
+    "@angular-devkit/build-angular": "^15.0.4"
   }
 }
